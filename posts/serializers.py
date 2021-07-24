@@ -10,7 +10,8 @@ class PostSerializer(ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ["text", "user","likes","posted_on","comments"]
+        fields = '__all__'
+        # fields = ["text", "user","likes","created_on", "comments"]
 
 class LikeSerializer(ModelSerializer):
     class Meta:

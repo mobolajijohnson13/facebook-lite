@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Post(models.Model):
     text = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date_posted = models.DateTimeField(auto_now_add=True)
+    created_on = models.DateTimeField(auto_now_add=True)
 
     def get_num_of_likes(self):
         return Like.objects.filter(Post=self).count()
@@ -21,7 +21,7 @@ class Post(models.Model):
 
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    tweet = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
 
     # class Meta:
@@ -33,7 +33,7 @@ class Like(models.Model):
 class Comments(models.Model):
     text = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    posted_on = models.DateTimeField(auto_now_add=True)
+    created_on = models.DateTimeField(auto_now_add=True)
     post = models.ForeignKey(Post, on_delete= models.CASCADE)
     
 
